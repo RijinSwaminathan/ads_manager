@@ -74,6 +74,7 @@ func (s *Server) handleCreateCampaign(w http.ResponseWriter, r *http.Request) {
 		req.Budget,
 		req.TargetReach,
 		req.TargetCPA,
+		req.Platforms,
 		req.StartTime,
 		req.EndTime,
 	)

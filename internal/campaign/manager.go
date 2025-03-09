@@ -24,17 +24,19 @@ func NewManager() *Manager {
 }
 
 // CreateCampaign initializes a new campaign with the given parameters
-func (m *Manager) CreateCampaign(ctx context.Context, budget float64, targetReach int, targetCPA float64, startTime, endTime time.Time) (*Campaign, error) {
+func (m *Manager) CreateCampaign(ctx context.Context, budget float64, targetReach int, targetCPA float64, platform []types.Platform, startTime, endTime time.Time) (*Campaign, error) {
 	if budget <= 0 || targetReach <= 0 || targetCPA <= 0 {
 		return nil, errors.New("invalid campaign parameters")
 	}
 
 	campaign := &Campaign{
 		ID:              uuid.New().String(),
+		Name:            "Name of the campaign",
 		Budget:          budget,
 		RemainingBudget: budget,
 		TargetReach:     targetReach,
 		TargetCPA:       targetCPA,
+		Platforms:       platform[:],
 		StartTime:       startTime,
 		EndTime:         endTime,
 		Status:          types.StatusDraft,
